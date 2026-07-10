@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block aside %}
+<div class="error-contenedor">
+    <h1 class="error-mensaje">No se pudo generar tu archivo</h1>
+</div>
+{% endblock %}
+
+{% block main %}
+    <h1>Ocurrió un</h1>
+    <h1 class="green">ERROR</h1>
+    <h2 class="error-detalle">{{ mensaje }}</h2>
+    <div class="errorLista">
+        <a class="button" href="{{ url_for('index') }}">Cliquee aquí para volver a intentar</a>
+    </div>
+{% endblock %}

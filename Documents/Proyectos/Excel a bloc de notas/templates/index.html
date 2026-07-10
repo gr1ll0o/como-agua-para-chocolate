@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}
+    {{ super() }}
+    <div class="formulario">
+        <form action="/subir" method="post" enctype="multipart/form-data" id="form-subida">
+
+            <label for="excel-input" class="dropzone" id="dropzone">
+                <p>Arrastrá tu archivo .xlsx acá, o hacé click para elegirlo</p>
+                <span id="nombre-archivo"></span>
+            </label>
+
+            <input
+                type="file"
+                name="excel"
+                id="excel-input"
+                accept=".xlsx"
+                required
+                style="display:none;"
+            >
+
+            <button type="submit" class="button">Continuar</button>
+        </form>
+    </div>
+{% endblock %}

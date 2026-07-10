@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/IMG/9abf87b3-2b90-407b-b4e1-90367fbb4949.jpg" type="image/png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Excel a TXT</title>
+</head>
+<body>
+    <header>
+        <img class="imgExcel" src="/static/IMG/descarga.png" alt="Logo Excel">
+        <div class="titleExcel">
+            <h1>ExcelToTXT</h1>
+        </div>
+        <img class="imgExcel" src="/static/IMG/descarga (1).png" alt="">
+    </header>
+
+    <div class="principal">
+        <aside>
+            {% block aside %}{% endblock %}
+        </aside>
+
+        <main>
+            {% block main %}
+                <h1>Convierte tus archivos</h1>
+                <h1 class="green">Excel a TXT</h1>
+                <h1>de forma simple y rapida</h1>
+                <h2>transforma tus archivos .xlsx en archivos .txt con el formato y alineacion que necesites</h2>
+            {% endblock %}
+        </main>
+    </div>
+    
+
+    <footer>
+        <div class="container">
+            <h1>¿Cómo funciona?</h1>
+            <img src="/static/IMG/759a3d53-64ab-4847-b09c-e3d3d45b9c52.png" alt="Como Funciona?">
+        </div>
+    </footer>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>

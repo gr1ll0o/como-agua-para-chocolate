@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block aside %}
+<form action="/procesar" method="post" id="form-columnas">
+    <input type="hidden" name="archivo_temp" value="{{ archivo_temp }}">
+
+    {% for col in columnas %}
+        <div class="fila-columna">
+            <label for="ancho_{{ col.indice }}">{{ col.indice + 1 }}. {{ col.nombre }}</label>
+            <input type="number" id="ancho_{{ col.indice }}" name="ancho_{{ col.indice }}" min="0" required>
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="button">Convertir</button>
+</form>
+{% endblock %}
+
+{% block main %}
+    <h1>Definí el ancho</h1>
+    <h1 class="green">de cada columna</h1>
+    <h2>se detectaron {{ columnas|length }} columnas en tu archivo</h2>
+    <div class="aviso">
+        <img class="imgLogo" src="static\IMG\descarga (2).png" alt="">
+        <h1 class="maintitlepromo">Conversión precisa de EXCEL a TXT</h1>
+        <h3 class="secondtitlepromo">Alinea columnas, conserva espacios y genera archivos TXT con formato fijo</h3>
+    </div>
+{% endblock %}

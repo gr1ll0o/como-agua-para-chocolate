@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block aside %}
+<div class="descarga-contenedor">
+    <h1 class="descarga-mensaje">¡Gracias por usar EXCELtoTXT!</h1>
+    <h1 class="descarga-mensaje">Su archivo está listo para descargar</h1>
+</div>
+{% endblock %}
+
+{% block main %}
+    <h1>Conversión</h1>
+    <h1 class="green">COMPLETADA</h1>
+    <h2>¡¡tu archivo .txt ya está generado y listo para descargar!!</h2>
+    <div class="descargaLista">
+        <a class="button" href="{{ url_for('descargar', nombre_salida=nombre_salida) }}">
+            Cliquee aquí para descargar su archivo
+        </a>
+
+        <a class="button" href="{{ url_for('index') }}">Cliquee aquí para generar otro TXT</a>
+    </div>
+{% endblock %}
