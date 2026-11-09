@@ -57,7 +57,7 @@ header p {
 button {
     background-color: #6B292D;
     color: #F5EBDD;
-    border: 2px solid #6B292D;
+    border: none;
     border-radius: 8px;
     padding: 12px;
     width: 200px;
