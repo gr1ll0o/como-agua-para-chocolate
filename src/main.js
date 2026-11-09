@@ -1,6 +1,10 @@
 const phDisplay = document.querySelector(".phrase h2");
 const scoreDisplay = document.querySelector(".score p");
 
+const endgame = document.querySelector(".endgame");
+const results = document.querySelector("#results");
+const restart = document.querySelector("#restart");
+
 const buttons = [
     document.querySelector("#opt1"),
     document.querySelector("#opt2"),
@@ -32,7 +36,6 @@ const phrases = {
     "Tiene demasiada sal.": "Mamá Elena",
     "¡Qué bien se ve este niño, al lado de una tía tan bella!": "Doctor John Brown",
     "Los hombres no son tan importantes para vivir padre. Ni la revolución es tan peligrosa como la pintan, ¡peor es el chile y el agua lejos!": "Mamá Elena",
-    "Tengo muy buen tino y muy mal carácter, capitán. El próximo tiro es para usted y le aseguro que puedo dispararle antes de que me maten, así es que mejor nos vamos respetando, porque si nos morimos, yo no le voy a hacer falta a nadie, pero de seguro la nación sí sentiría mucho su pérdida, ¿o no es así?": "Mamá Elena",
     "¡Mire lo que hago con sus órdenes! ¡Ya me cansé! ¡Ya me cansé de obedecerla!": "Tita",
     "Como ve, todos tenemos en nuestro interior los elementos necesarios para producir fósforo.": "Doctor John Brown",
     "Porque no quiero.": "Tita",
@@ -77,7 +80,6 @@ const phrases = {
 const choosePhrase = (list) => {
     const keys = Object.keys(list); 
     const randomKey = keys[Math.floor(Math.random() * keys.length)]; 
-
     return { phrase: randomKey, pj: list[randomKey] };
 };
 
@@ -89,29 +91,26 @@ const loadStage = (stage) => {
     options = options.slice(0, 2);
     options.push(stage.pj);
     options.sort(() => Math.random() - 0.5);
-
-    buttons.forEach((button, i) => {
-        button.textContent = options[i];
-    });
+    buttons.forEach((button, i) => button.textContent = options[i]);
 };
 
-function update(win=true) {
+function update(win) {
+    results.innerHTML = ``;
     if (!win) { // PERDIO
         phDisplay.style.color = "#6B292D";
         buttons.forEach((btn) => {btn.disabled = true;});
-
+        if (score > localStorage.getItem('record')) {
+            results.innerHTML += `<p id="record">¡NUEVO RÉCORD!</p>`
+            localStorage.setItem('record', score);
+        }
+        results.innerHTML += `<p>${score} correcta(s).</p>`
         setTimeout(() => {
-            phDisplay.style.color = "#392D29";
-            stage = choosePhrase(phrases);
-            loadStage(stage);
-            buttons.forEach((btn) => {
-                btn.disabled = false;
-                btn.style.backgroundColor = "#6B292D"
-            });
-        }, 600);
+            endgame.classList.add("active");
+        }, 1000);
     }else{ // GANO
         phDisplay.style.color = "#A4A56A";
-        scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: 0"
+        if (score > record) record = score;
+        scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
         buttons.forEach((btn) => {btn.disabled = true;});
 
         setTimeout(() => {
@@ -127,11 +126,26 @@ function update(win=true) {
 }
 
 let score = 0;
+let record = 0;
 let stage = choosePhrase(phrases);
 
 function startGame() {
+    if (localStorage.getItem('record') == null) {
+        record = 0;
+        localStorage.setItem('record', 0);
+    }else{
+        record = localStorage.getItem('record');
+    }
+    endgame.classList.remove("active");
+    stage = choosePhrase(phrases);
     loadStage(stage);
-    scoreDisplay.innerHTML = "CORRECTAS: 0" + " | RÉCORD: 0"
+    score = 0;
+    phDisplay.style.color = "#392D29";
+    buttons.forEach((btn) => {
+        btn.disabled = false;
+        btn.style.backgroundColor = "#6B292D"
+    });
+    scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
 }
 
 buttons.forEach((btn) => {
@@ -139,12 +153,14 @@ buttons.forEach((btn) => {
         if (btn.textContent == stage.pj) {
             score++;
             btn.style.backgroundColor = "#A4A56A"
-            update();
+            update(true);
         }else{
             btn.style.backgroundColor = "#392D29";
-            update(false)
+            update(false);
         }
     });
 });
+
+restart.addEventListener('click', () => startGame());
 
 startGame();

@@ -32,7 +32,7 @@ header p {
 
 .game {
     width: 100dvw;
-    height: 60dvh;
+    height: 70dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,6 +45,8 @@ header p {
     max-width: 900px;
     padding: 0 20px;
     font-style: italic;
+
+    transition: all ease 500ms;
 }
 
 .options {
@@ -77,4 +79,59 @@ button:active {
     background-color: #4A1C20;
     border-color: #4A1C20;
     transform: scale(0.97);
+}
+
+.credits {
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    width: 100dvw;
+    height: 10dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.credits p { 
+    font-size: 16px;
+    margin: 0;
+}
+
+/* popup al perder (milagrosamente funciona) */
+.endgame {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(57, 45, 41, 0.65);
+    z-index: 9999999;
+}
+
+.endgame.active { 
+    display: flex;
+}
+
+.endgame > div {
+    background-color: #F5EBDD;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.endgame > div > h2,
+.endgame > div > p,
+#results { margin: 0; }
+
+.endgame > div > h2 {
+    font-size: 32px;
+    margin: 0;
+}
+
+#record { 
+    color: #A4A56A;
+    font-weight: 900;
+    font-size: 18px; 
 }
