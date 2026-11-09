@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    margin: 0;
+    background-color: #E8C99B;
+    color: #392D29;
+    font-family: 'Playfair Display';
+}
+
+header {
+    width: 100dvw;
+    height: 20dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+p {
+    font-size: 24px;
+}
+
+header h1,
+header p {
+    margin: 0;
+}
+
+.game {
+    width: 100dvw;
+    height: 60dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.phrase {
+    font-size: clamp(20px, 3vw, 30px);
+    max-width: 900px;
+    padding: 0 20px;
+    font-style: italic;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+button {
+    background-color: #6B292D;
+    color: #F5EBDD;
+    border: 2px solid #6B292D;
+    border-radius: 8px;
+    padding: 12px;
+    width: 200px;
+    font-size: 20px;
+    font-family: 'Playfair Display', serif;
+    cursor: pointer;
+    transition: all 180ms ease;
+}
+
+button:hover {
+    background-color: #A34E42;
+    border-color: #A34E42;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #4A1C20;
+    border-color: #4A1C20;
+    transform: scale(0.97);
+}
