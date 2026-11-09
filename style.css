@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+* { box-sizing: border-box; }
+
 body {
     margin: 0;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+
     background-color: #E8C99B;
     color: #392D29;
-    font-family: 'Playfair Display';
+    font-family: 'Playfair Display', serif;
 }
 
 header {
@@ -17,44 +23,63 @@ header {
     text-align: center;
 }
 
-h1 {
-    font-size: 48px;
-}
+h1 { font-size: 48px; }
 
-p {
-    font-size: 24px;
-}
+p { font-size: 24px; }
 
 header h1,
-header p {
-    margin: 0;
-}
+header p { margin: 0; }
 
 .game {
-    width: 100dvw;
-    height: 70dvh;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 40px 20px;
+    gap: 28px;
+}
+
+.game > div:first-child {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
 
 .phrase {
-    font-size: clamp(20px, 3vw, 30px);
+    width: 100%;
     max-width: 900px;
-    padding: 0 20px;
+    box-sizing: border-box;
+    font-size: clamp(20px, 3vw, 30px);
     font-style: italic;
+    line-height: 1.4;
+    padding: 0 20px;
+    text-wrap: pretty;
+}
 
-    transition: all ease 500ms;
+.phrase h2 {
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+    overflow-wrap: break-word;
 }
 
 .options {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 16px;
+    width: 100%;
 }
+
+.score { text-align: center;}
+.score p { margin: 0; }
 
 button {
     background-color: #6B292D;
@@ -82,16 +107,17 @@ button:active {
 }
 
 .credits {
-    margin: 0;
+    margin-top: auto;
+    flex-shrink: 0;
     background-color: #000;
     color: #fff;
-    width: 100dvw;
-    height: 10dvh;
+    width: 100%;
+    min-height: 10dvh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 16px;
 }
 
 .credits p { 
@@ -110,15 +136,15 @@ button:active {
     z-index: 9999999;
 }
 
-.endgame.active { 
-    display: flex;
-}
+.endgame.active { display: flex; }
 
 .endgame > div {
     background-color: #F5EBDD;
-    padding: 40px;
+    padding: clamp(24px, 5vw, 40px);
     border-radius: 12px;
     text-align: center;
+    width: min(400px, calc(100% - 64px));
+    box-sizing: border-box;
 }
 
 .endgame > div > h2,
@@ -134,4 +160,48 @@ button:active {
     color: #A4A56A;
     font-weight: 900;
     font-size: 18px; 
+}
+
+/* responsive (ponele) */
+@media (max-width: 600px) {
+
+    header {
+        width: 100%;
+        min-height: 20dvh;
+        height: auto;
+        padding: 20px 0;
+        box-sizing: border-box;
+    }
+
+    header h1 { font-size: clamp(28px, 8vw, 40px); }
+
+    header p { font-size: 18px; }
+
+    .game {
+        flex: 1;
+        min-height: 0;
+        padding: 30px 12px;
+    }
+
+    .phrase {
+        padding: 0 8px;
+        font-size: 22px;
+    }
+
+    .options {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    button { width: min(280px, 100%); }
+
+    .credits {
+        width: 100%;
+        height: auto;
+        min-height: 10dvh;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .credits p { font-size: 12px; }
 }
