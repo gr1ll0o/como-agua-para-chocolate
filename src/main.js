@@ -11,6 +11,7 @@ const buttons = [
     document.querySelector("#opt3")
 ];
 
+
 const pjs = [
     "Mamá Elena",
     "Chencha",
@@ -23,7 +24,13 @@ const pjs = [
     "Rosaura",
     "Sargento Treviño",
     "Paquita Lobo",
-    "Jorge Lobo"
+    "Jorge Lobo",
+    "Don Pascual Muzquiz",
+    "Invitada a la boda",
+    "Padre Ignacio",
+    "Capitán Juan Alejandrez",
+    "Mamá Elena (Fantasma)",
+    "Tía Mary (Mary Brown)"
 ];
 
 // FRASE : AUTOR
@@ -74,8 +81,56 @@ const phrases = {
     "Creo que tenemos pendiente una conversación, ¿no lo crees?": "Rosaura",
     "No te quiero presionar, sólo quiero asegurarte que a mi lado serás feliz.": "Doctor John Brown",
     "¿Te acuerdas de cuando escuchamos por primera vez esa pieza?": "Pedro",
-    "Felicidades Pedro, tu hija no pudo haber encontrado mejor partido que Alex en diez millas a la redonda.": "Jorge Lobo"
+    "Felicidades Pedro, tu hija no pudo haber encontrado mejor partido que Alex en diez millas a la redonda.": "Jorge Lobo",
+    "¿Y de qué me tiene que venir a hablar ese señor?": "Mamá Elena",
+    "Entonces, ¿te vas a casar sin sentir amor?": "Don Pascual Muzquiz",
+    "¡Estoy perfectamente! Tienes unas hijas maravillosas. ¡Y su conversación es fascinante!": "Paquita Lobo",
+    "Yo soy hombre de pocas, pero muy firmes palabras. Le juro que tendrá mi amor por siempre. ¿Qué hay del suyo? ¿Usted también lo siente por mí?": "Pedro",
+    "¡Abre los ojos y mira tu pollo!": "Mamá Elena",
+    "Es necesario que me permita dirigirle unas palabras...": "Pedro",
+    "¿Ya viste a Tita? ¡Pobrecita, su hermana se va a casar con su novio! Yo los vi un día en la plaza del pueblo, tomados de la mano.": "Invitada a la boda",
+    "¿Y a mí no me va a felicitar?": "Pedro",
+    "No, para ser la primera vez no está tan mal.": "Pedro",
+    "-Tita...": "Pedro",
+    "Hoy que comimos este platillo, huyó de la casa Gertrudis...": "Tita",
+    "Por cómo se están presentando las cosas padre, me preocupa que un día mi hija Rosaura necesite un médico y no lo podamos traer, como el día en que dio a luz.": "Mamá Elena",
+    "Yo no opino lo mismo doña Elena, precisamente por cómo está la situación política, usted necesita de un hombre en casa que la defienda.": "Padre Ignacio",
+    "Y eso que no es su propio hijo, ya me imagino lo bonita que se va a ver cuando el niño que cargue sea el suyo.": "Doctor John Brown",
+    "Sí, mami, tomó su té y se durmió.": "Tita",
+    "Venimos a pedirle, por las buenas, su cooperación para la causa.": "Capitán Juan Alejandrez",
+    "Y yo, por las buenas, les digo que se lleven lo que quieran de las provisiones que encuentren en el granero y los corrales. Pero eso sí, las que tengo dentro de mi casa no las tocan, ¿entendido?": "Mamá Elena",
+    "Una mujer así de valiente siempre tendrá mi admiración.": "Capitán Juan Alejandrez",
+    "Es q'el Felipe yástá aquí y dice ¡que si petatió!": "Chencha",
+    "En 1669, Brandt, químico de Hamburgo, buscando la piedra filosofal descubrió el fósforo.": "Doctor John Brown",
+    "Ya teniendo la masa para los fósforos, el paso que sigue es preparar el cartón para las cerillas.": "Doctor John Brown",
+    "Hay muchas maneras de poner a secar una caja de cerillos húmeda, pero puede estar segura de que tiene remedio.": "Doctor John Brown",
+    "No quiero romper la ley del silencio que se ha impuesto, así que como un secreto entre los dos, le voy a pedir que en cuanto yo salga usted me escriba en esta pared las razones por las que no habla, ¿de acuerdo?": "Doctor John Brown",
+    "Doña Elena, no se altere por favor, le hace daño. Yo le quito esa charola, pero dígame ¿no tiene deseos de comer?": "Doctor John Brown",
+    "De ninguna manera, doctor, si fuera la medicina todo el tiempo tendría ese sabor en la boca y no es así. Algo me están dando con la comida.": "Mamá Elena",
+    "¡Ya sabe que ella no se puede casar!": "Mamá Elena",
+    "Toditos dicen que plato de segunda mesa ni en otra vida, ¡menos en ésta!": "Chencha",
+    "Pedro, usted no es nadie para decirme lo que tengo que hacer, o no. Cuando usted se casó yo no le pedí que no lo hiciera, a pesar de que esa boda me destrozó.": "Tita",
+    "Pues lo piensa demasiado tarde. Ahora ya no hay remedio. Y le suplico que nunca más en la vida me vuelva a molestar...": "Tita",
+    "¿Qué dices Chencha, de qué hablas?": "Rosaura",
+    "La cena está servida.": "Chencha",
+    "¡No! ¡Mi hijo no está maldito!": "Tita",
+    "¡Sí lo está! ¡Lo maldigo yo! ¡A él y a ti, para siempre!": "Mamá Elena (Fantasma)",
+    "Cierra la puerta, niña, ¿no ves el frío qui’ace? Últimamente te veo muy despatoladota. ¿Pos qué tráis pues’n?": "Chencha",
+    "Es muy fácil, ¿por qué no va al cuarto obscuro? Ahí lo podemos hacer sin que nadie nos moleste.": "Pedro",
+    "Si lo sigues queriendo, ¿cómo es entonces que te vas a casar con John?": "Gertrudis",
+    "Nada más déjame quitar esto de la lumbre y ahorita sigues llorando, ¿sí?": "Gertrudis",
+    "¿Por qué no me lo había dicho?": "Pedro",
+    "¡Me creo lo que soy! Una persona que tiene todo el derecho a vivir la vida como mejor me plazca. Déjeme de una vez por todas, ¡ya no la soporto!": "Tita",
+    "Tú tuviste un novio indebidamente. No te correspondía tenerlo.": "Rosaura",
+    "Y que voy a romper cuantas veces sea necesario, mientras esa maldita tradición no me tome en cuenta.": "Tita",
+    "Mmmm. Esto está delicioso, Tita.": "Tía Mary (Mary Brown)",
+    "En el tiempo que estuviste fuera tuve relaciones con un hombre del que siempre había estado enamorada y perdí mi virginidad. Por eso ya no puedo casarme contigo.": "Tita",
+    "¡Claro! No quiero morirme sin lograr que lo seas. Siempre he soñado con entrar contigo a una iglesia llena de flores blancas...": "Pedro",
+    "¿Vestida de blanco?": "Tita",
+    "Y quiero que sepas que no me vas a convencer de no hacerlo. No me importa lo que piensen ni mi hija ni nadie más.": "Pedro",
+    "Sí, Alex Brown es un excelente muchacho. Lo único malo es que nos van a abandonar.": "Pedro"
 };
+
 
 const choosePhrase = (list) => {
     const keys = Object.keys(list); 
