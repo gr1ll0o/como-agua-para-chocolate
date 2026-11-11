@@ -97,7 +97,7 @@ const loadStage = (stage) => {
 function update(win) {
     results.innerHTML = ``;
     if (!win) { // PERDIO
-        phDisplay.style.color = "#6B292D";
+        phDisplay.style.color = "#A83232";
         buttons.forEach((btn) => {btn.disabled = true;});
         if (score > localStorage.getItem('record')) {
             results.innerHTML += `<p id="record">¡NUEVO RÉCORD!</p>`
@@ -108,7 +108,7 @@ function update(win) {
             endgame.classList.add("active");
         }, 1000);
     }else{ // GANO
-        phDisplay.style.color = "#A4A56A";
+        phDisplay.style.color = "#477548";
         if (score > record) record = score;
         scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
         buttons.forEach((btn) => {btn.disabled = true;});
