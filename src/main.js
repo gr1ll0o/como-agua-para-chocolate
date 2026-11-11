@@ -133,9 +133,8 @@ function startGame() {
     if (localStorage.getItem('record') == null) {
         record = 0;
         localStorage.setItem('record', 0);
-    }else{
-        record = localStorage.getItem('record');
-    }
+    }else record = localStorage.getItem('record');
+
     endgame.classList.remove("active");
     stage = choosePhrase(phrases);
     loadStage(stage);
