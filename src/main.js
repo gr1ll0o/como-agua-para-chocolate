@@ -12,12 +12,12 @@ const buttons = [
 ];
 
 let jokers = 3;
-let correct; // de 0 - 2 sino t rompo la cabeza
+let c; // de 0 - 2 sino t rompo la cabeza
 
 let joker = document.querySelector("#joker");
 
 joker.addEventListener('click', () => {
-    consumeJoker(correct); 
+    consumeJoker(c); 
 });
 
 const pjs = [
@@ -177,9 +177,9 @@ function update(win) {
 }
 
 // CONSUMIR JOKER
-function consumeJoker(correct) {
+function consumeJoker(c) {
     if (joker <= 0) return; // si no hay comodines, sos un bldo
-    if (correct < 0 || correct > 2) { // si está fuera de 0 y 2 sos un bldo
+    if (c < 0 || c > 2) { // si está fuera de 0 y 2 sos un bldo
         console.log("sos un boludo."); 
         return;
     }
