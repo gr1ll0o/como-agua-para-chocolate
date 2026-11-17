@@ -13,12 +13,9 @@ const buttons = [
 
 let jokers = 3;
 let correctIndex = 0;
+let jokerUsedThisQuestion = false;
 
 let joker = document.querySelector("#joker");
-
-joker.addEventListener('click', () => {
-    consumeJoker(correctIndex);
-});
 
 const pjs = [
     "Mamá Elena",
@@ -33,7 +30,6 @@ const pjs = [
     "Tía Mary (Mary Brown)"
 ];
 
-// FRASE : AUTOR
 const phrases = {
     "Sabes muy bien que por ser la más chica de las mujeres a ti te corresponde cuidarme hasta el día de mi muerte.": ["Mamá Elena", "Rosaura", "Tita"],
     "¿Ay sí, no? ¡Su ‘amá habla d'estar preparada para el matrimoño, como si juera un plato de enchiladas! ¡Y ni ansina, porque pos no es lo mismo que lo mesmo!": ["Chencha", "Nacha", "Gertrudis"],
@@ -126,8 +122,9 @@ const phrases = {
 };
 
 const choosePhrase = (list) => {
-    const keys = Object.keys(list); 
-    const randomKey = keys[Math.floor(Math.random() * keys.length)]; 
+    const keys = Object.keys(list);
+    const randomKey = keys[Math.floor(Math.random() * keys.length)];
+
     return {
         phrase: randomKey,
         options: [...list[randomKey]]
@@ -139,37 +136,82 @@ const loadStage = (stage) => {
 
     let options = [...stage.options];
     options.sort(() => Math.random() - 0.5);
+
     correctIndex = options.indexOf(stage.options[0]);
+
+    jokerUsedThisQuestion = false;
+    joker.disabled = jokers <= 0;
+
     buttons.forEach((button, i) => {
         button.textContent = options[i];
+        button.style.visibility = "visible";
+        button.style.background = "#6B292D";
     });
 };
+
+function consumeJoker() {
+    if (jokers <= 0 || jokerUsedThisQuestion) return;
+
+    let availableOptions = [];
+
+    buttons.forEach((btn, index) => {
+        if (index !== correctIndex && btn.style.visibility !== "hidden") {
+            availableOptions.push(index);
+        }
+    });
+
+    if (availableOptions.length === 0) return;
+
+    let randomIndex = Math.floor(Math.random() * availableOptions.length);
+    let opt = availableOptions[randomIndex];
+
+    buttons[opt].style.visibility = "hidden";
+
+    jokers--;
+    jokerUsedThisQuestion = true;
+
+    joker.textContent = `COMODINES (${jokers})`;
+    joker.disabled = true;
+}
+
+let score = 0;
+let record = 0;
+let stage = choosePhrase(phrases);
 
 function update(win) {
     buttons.forEach((btn) => {
         btn.disabled = true;
     });
+
+    joker.disabled = true;
+
     if (win) {
-        scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
         if (score > record) {
             record = score;
             localStorage.setItem("record", record);
         }
+
+        scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
 
         setTimeout(() => {
             phDisplay.style.color = "#392D29";
 
             stage = choosePhrase(phrases);
             loadStage(stage);
+
             buttons.forEach((btn) => {
                 btn.disabled = false;
                 btn.style.display = "block";
                 btn.style.visibility = "visible";
-                btn.style.backgroundColor = "#6B292D";
+                btn.style.background = "#6B292D";
             });
+
+            joker.disabled = jokers <= 0;
         }, 600);
+
     } else {
         phDisplay.style.color = "#A4A56A";
+
         setTimeout(() => {
             endgame.classList.add("active");
 
@@ -181,64 +223,55 @@ function update(win) {
     }
 }
 
-// CONSUMIR JOKER
-function consumeJoker(correctIndex) {
-    if (jokers <= 0) return;
-    let availableOptions = [];
-    buttons.forEach((btn, index) => {
-        if (index !== correctIndex && btn.style.visibility !== "hidden") {
-            availableOptions.push(index);
-        }
-    });
-    if (availableOptions.length === 0) return;
-    jokers--;
-    let randomIndex = Math.floor(Math.random() * availableOptions.length);
-    let opt = availableOptions[randomIndex];
-    buttons[opt].style.visibility = "hidden";
-    joker.textContent = `COMODINES (${jokers})`;
-}
-
-let score = 0;
-let record = 0;
-let stage = choosePhrase(phrases);
-
 function startGame() {
-    if (localStorage.getItem('record') == null) {
+    if (localStorage.getItem("record") == null) {
         record = 0;
-        localStorage.setItem('record', 0);
+        localStorage.setItem("record", 0);
     } else {
-        record = localStorage.getItem('record');
+        record = Number(localStorage.getItem("record"));
     }
+
     endgame.classList.remove("active");
-    stage = choosePhrase(phrases);
-    loadStage(stage);
 
     score = 0;
     jokers = 3;
+    jokerUsedThisQuestion = false;
+
+    stage = choosePhrase(phrases);
+    loadStage(stage);
+
     joker.textContent = `COMODINES (${jokers})`;
+    joker.disabled = false;
+
     phDisplay.style.color = "#392D29";
+
     buttons.forEach((btn) => {
         btn.disabled = false;
         btn.style.display = "block";
-        btn.style.backgroundColor = "#6B292D";
         btn.style.visibility = "visible";
+        btn.style.background = "#6B292D";
     });
+
     scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
 }
 
+joker.addEventListener("click", () => {
+    consumeJoker();
+});
+
 buttons.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener("click", () => {
         if (i === correctIndex) {
             score++;
-            btn.style.backgroundColor = "#A4A56A";
+            btn.style.background = "#A4A56A";
             update(true);
         } else {
-            btn.style.backgroundColor = "#392D29";
+            btn.style.background = "#392D29";
             update(false);
         }
     });
 });
 
-restart.addEventListener('click', () => startGame());
+restart.addEventListener("click", () => startGame());
 
 startGame();
