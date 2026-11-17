@@ -12,12 +12,13 @@ const buttons = [
 ];
 
 let jokers = 3;
-let c; // de 0 - 2 sino t rompo la cabeza
+let inUse = false;
+let i; // de 0 - 2 sino t rompo la cabeza
 
 let joker = document.querySelector("#joker");
 
 joker.addEventListener('click', () => {
-    consumeJoker(c); 
+    consumeJoker(i); 
 });
 
 const pjs = [
@@ -172,18 +173,21 @@ function update(win) {
                 btn.style.display = "block";
                 btn.style.backgroundColor = "#6B292D"
             });
+            inUse = false;
         }, 600);
     }
 }
 
 // CONSUMIR JOKER
-function consumeJoker(c) {
+function consumeJoker(i) {
+    if (inUse) return;
     if (jokers <= 0) return; // si no hay comodines, sos un bldo
-    if (c < 0 || c > 2) { // si está fuera de 0 y 2 sos un bldo
+    if (i < 0 || i > 2) { // si está fuera de 0 y 2 sos un bldo
         console.log("sos un boludo."); 
         return;
     }
 
+    inUse = true;
     jokers--; // restamos un comodin
     let opt;
 
@@ -210,6 +214,7 @@ function startGame() {
     loadStage(stage);
     score = 0;
     jokers = 3;
+    inUse = false;
     phDisplay.style.color = "#392D29";
     buttons.forEach((btn) => {
         btn.disabled = false;
