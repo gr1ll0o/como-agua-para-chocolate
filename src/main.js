@@ -12,12 +12,21 @@ const buttons = [
 ];
 
 let jokers = 3;
+<<<<<<< HEAD
 let correctIndex = 0;
+=======
+let inUse = false;
+let i; // de 0 - 2 sino t rompo la cabeza
+>>>>>>> 8bf495c05d448d304c9d8ea0ab6abc90ec41431b
 
 let joker = document.querySelector("#joker");
 
 joker.addEventListener('click', () => {
+<<<<<<< HEAD
     consumeJoker(correctIndex);
+=======
+    consumeJoker(i); 
+>>>>>>> 8bf495c05d448d304c9d8ea0ab6abc90ec41431b
 });
 
 const pjs = [
@@ -172,11 +181,13 @@ function update(win) {
                 btn.style.display = "block";
                 btn.style.backgroundColor = "#6B292D"
             });
+            inUse = false;
         }, 600);
     }
 }
 
 // CONSUMIR JOKER
+<<<<<<< HEAD
 function consumeJoker(correctIndex) {
     if (jokers <= 0) return;
     if (correctIndex < 0 || correctIndex > 2) {
@@ -190,6 +201,25 @@ function consumeJoker(correctIndex) {
     } while (opt === correctIndex || buttons[opt].style.display === "none");
     buttons[opt].style.display = "none";
     joker.textContent = `COMODINES (${jokers})`;
+=======
+function consumeJoker(i) {
+    if (inUse) return;
+    if (jokers <= 0) return; // si no hay comodines, sos un bldo
+    if (i < 0 || i > 2) { // si está fuera de 0 y 2 sos un bldo
+        console.log("sos un boludo."); 
+        return;
+    }
+
+    inUse = true;
+    jokers--; // restamos un comodin
+    let opt;
+
+    do opt = Math.floor(Math.random() * 3);
+    while (opt == i) // elegis una opción que no sea la correcta
+
+    buttons[opt].style.display = "none"; // lo ocultas
+    joker.textContent = `COMODINES (${jokers})` // actualizas valor de comodines
+>>>>>>> 8bf495c05d448d304c9d8ea0ab6abc90ec41431b
 }
 
 let score = 0;
@@ -209,7 +239,11 @@ function startGame() {
 
     score = 0;
     jokers = 3;
+<<<<<<< HEAD
     joker.textContent = `COMODINES (${jokers})`;
+=======
+    inUse = false;
+>>>>>>> 8bf495c05d448d304c9d8ea0ab6abc90ec41431b
     phDisplay.style.color = "#392D29";
     buttons.forEach((btn) => {
         btn.disabled = false;
