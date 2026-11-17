@@ -21,7 +21,6 @@ const pjs = [
     "Gertrudis",
     "Alex Brown",
     "Rosaura",
-    "Mamá Elena (Fantasma)",
     "Tía Mary (Mary Brown)"
 ];
 
@@ -97,7 +96,7 @@ const phrases = {
     "¿Qué dices Chencha, de qué hablas?": "Rosaura",
     "La cena está servida.": "Chencha",
     "¡No! ¡Mi hijo no está maldito!": "Tita",
-    "¡Sí lo está! ¡Lo maldigo yo! ¡A él y a ti, para siempre!": "Mamá Elena (Fantasma)",
+    "¡Sí lo está! ¡Lo maldigo yo! ¡A él y a ti, para siempre!": "Mamá Elena",
     "Cierra la puerta, niña, ¿no ves el frío qui’ace? Últimamente te veo muy despatoladota. ¿Pos qué tráis pues’n?": "Chencha",
     "Es muy fácil, ¿por qué no va al cuarto obscuro? Ahí lo podemos hacer sin que nadie nos moleste.": "Pedro",
     "Si lo sigues queriendo, ¿cómo es entonces que te vas a casar con John?": "Gertrudis",
@@ -113,7 +112,6 @@ const phrases = {
     "Y quiero que sepas que no me vas a convencer de no hacerlo. No me importa lo que piensen ni mi hija ni nadie más.": "Pedro",
     "Sí, Alex Brown es un excelente muchacho. Lo único malo es que nos van a abandonar.": "Pedro"
 };
-
 
 const choosePhrase = (list) => {
     const keys = Object.keys(list); 
