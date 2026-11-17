@@ -186,6 +186,8 @@ function update(win) {
     joker.disabled = true;
 
     if (win) {
+        phDisplay.style.color = "#A4A56A";
+
         if (score > record) {
             record = score;
             localStorage.setItem("record", record);
@@ -210,7 +212,7 @@ function update(win) {
         }, 600);
 
     } else {
-        phDisplay.style.color = "#A4A56A";
+        phDisplay.style.color = "#A00000";
 
         setTimeout(() => {
             endgame.classList.add("active");

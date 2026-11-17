@@ -262,6 +262,7 @@ button:focus-visible {
     transform: scale(0.96);
 }
 
+
 .credits {
     margin-top: auto;
     flex-shrink: 0;
