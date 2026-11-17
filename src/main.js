@@ -11,7 +11,6 @@ const buttons = [
     document.querySelector("#opt3")
 ];
 
-
 const pjs = [
     "Mamá Elena",
     "Chencha",
@@ -22,13 +21,6 @@ const pjs = [
     "Gertrudis",
     "Alex Brown",
     "Rosaura",
-    "Sargento Treviño",
-    "Paquita Lobo",
-    "Jorge Lobo",
-    "Don Pascual Muzquiz",
-    "Invitada a la boda",
-    "Padre Ignacio",
-    "Capitán Juan Alejandrez",
     "Mamá Elena (Fantasma)",
     "Tía Mary (Mary Brown)"
 ];
@@ -53,11 +45,9 @@ const phrases = {
     "¡Te has olvidado de lo que es la moral, el respeto, las buenas costumbres! No vales nada, eres una cualquiera que no se respeta ni a sí misma.": "Mamá Elena",
     "Yo no sé de dónde sacó ese ritmo Gertrudis. A mamá no le gustaba bailar y dicen que papá lo hacía muy mal.": "Rosaura",
     "Mira Tita, la mera verdad es que la verdad no existe, depende del punto de vista de cada quien.": "Gertrudis",
-    "¡Por fin! ¡Aquí está lo del punto de bola, mi generala!": "Sargento Treviño",
     "¡Yo sí tengo dignidad! Que se busque una cualquiera como tú para sus cochinadas, pero eso sí, en esta casa yo voy a seguir siendo la esposa.": "Rosaura",
     "Tita, no me importa lo que hiciste, hay acciones en la vida a las que no hay que darles tanta importancia, si éstas no modifican lo esencial. Lo que me dijiste no cambió mi manera de pensar...": "Doctor John Brown",
     "Esa noche no dormí pensando en pedir tu mano de inmediato. No sabía que tendría que dejar pasar 22 años para volverte a preguntar si quieres ser mi esposa.": "Pedro",
-    "¡Qué barbaridad Tita! ¿Y ahora qué vas a hacer? Sin Esperanza en la casa ya no vas a poder vivir cerca de Pedro. Ay, antes de que te vayas a vivir a otro lado, dame la receta de los chiles en nogada.": "Paquita Lobo",
     "Para que recuerdes que el flojo y el mezquino andan doble su camino.": "Mamá Elena",
     "Señorita Tita, quisiera aprovechar la oportunidad de poder hablarle a solas para decirle que estoy profundamente enamorado de usted.": "Pedro",
     "Te felicito, las puntadas son perfectas, pero no lo hilvanaste, ¿verdad?": "Mamá Elena",
@@ -74,7 +64,7 @@ const phrases = {
     "¡John! ¡No se vaya, por favor!": "Tita",
     "Porque está asquerosamente amargo, no lo quiero. ¡Llévatelo! ¿No me oíste?": "Mamá Elena",
     "Tita, quisiera decirle que considero un lamentable error de su parte la idea que tiene de casarse con John. Aún está a tiempo de no cometer esa equivocación, ¡no acepte ese matrimonio, por favor!": "Pedro",
-    "¿Ya te sientes bien? Aún te noto medio mareada, ¡y tienes una mirada! Que de no ser porque yo sé perfectamente que eres una muchacha decente juraría que estás embarazada.": "Paquita Lobo",
+    "¿Ya te sientes bien? Aún te noto medio mareada, ¡y tienes una mirada! Que de no ser porque yo sé perfectamente que eres una muchacha decente juraría que estás embarazada.": "Chencha",
     "¿Embarazada? ¡Sólo a usted se le ocurre! ¿Y qué tiene que ver la mirada con eso?": "Tita",
     "... Y creo que entonces sería bueno que Pedro se enterara de que esperas un hijo suyo.": "Gertrudis",
     "La que se debería de ir es usted. Ya me cansé de que me atormente. ¡Déjame en paz de una vez por todas!": "Tita",
@@ -83,18 +73,14 @@ const phrases = {
     "¿Te acuerdas de cuando escuchamos por primera vez esa pieza?": "Pedro",
     "Felicidades Pedro, tu hija no pudo haber encontrado mejor partido que Alex en diez millas a la redonda.": "Jorge Lobo",
     "¿Y de qué me tiene que venir a hablar ese señor?": "Mamá Elena",
-    "Entonces, ¿te vas a casar sin sentir amor?": "Don Pascual Muzquiz",
-    "¡Estoy perfectamente! Tienes unas hijas maravillosas. ¡Y su conversación es fascinante!": "Paquita Lobo",
     "Yo soy hombre de pocas, pero muy firmes palabras. Le juro que tendrá mi amor por siempre. ¿Qué hay del suyo? ¿Usted también lo siente por mí?": "Pedro",
     "¡Abre los ojos y mira tu pollo!": "Mamá Elena",
     "Es necesario que me permita dirigirle unas palabras...": "Pedro",
     "¿Ya viste a Tita? ¡Pobrecita, su hermana se va a casar con su novio! Yo los vi un día en la plaza del pueblo, tomados de la mano.": "Invitada a la boda",
     "¿Y a mí no me va a felicitar?": "Pedro",
     "No, para ser la primera vez no está tan mal.": "Pedro",
-    "-Tita...": "Pedro",
     "Hoy que comimos este platillo, huyó de la casa Gertrudis...": "Tita",
     "Por cómo se están presentando las cosas padre, me preocupa que un día mi hija Rosaura necesite un médico y no lo podamos traer, como el día en que dio a luz.": "Mamá Elena",
-    "Yo no opino lo mismo doña Elena, precisamente por cómo está la situación política, usted necesita de un hombre en casa que la defienda.": "Padre Ignacio",
     "Y eso que no es su propio hijo, ya me imagino lo bonita que se va a ver cuando el niño que cargue sea el suyo.": "Doctor John Brown",
     "Sí, mami, tomó su té y se durmió.": "Tita",
     "Venimos a pedirle, por las buenas, su cooperación para la causa.": "Capitán Juan Alejandrez",
@@ -159,9 +145,7 @@ function update(win) {
             localStorage.setItem('record', score);
         }
         results.innerHTML += `<p>${score} correcta(s).</p>`
-        setTimeout(() => {
-            endgame.classList.add("active");
-        }, 1000);
+        setTimeout(() => endgame.classList.add("active"), 1000);
     }else{ // GANO
         phDisplay.style.color = "#477548";
         if (score > record) record = score;
