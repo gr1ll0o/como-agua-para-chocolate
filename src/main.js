@@ -11,6 +11,15 @@ const buttons = [
     document.querySelector("#opt3")
 ];
 
+let jokers = 3;
+let correct; // de 0 - 2 sino t rompo la cabeza
+
+let joker = document.querySelector("#joker");
+
+joker.addEventListener('click', () => {
+    consumeJoker(correct); 
+});
+
 const pjs = [
     "Mamá Elena",
     "Chencha",
@@ -145,8 +154,10 @@ function update(win) {
         phDisplay.style.color = "#477548";
         if (score > record) record = score;
         scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
-        buttons.forEach((btn) => {btn.disabled = true;});
-
+        buttons.forEach((btn) => {
+            btn.disabled = true;
+            btn.style.display = "block";
+        });
         setTimeout(() => {
             phDisplay.style.color = "#392D29";
             stage = choosePhrase(phrases);
@@ -157,6 +168,24 @@ function update(win) {
             });
         }, 600);
     }
+}
+
+// CONSUMIR JOKER
+function consumeJoker(correct) {
+    if (joker <= 0) return; // si no hay comodines, sos un bldo
+    if (correct < 0 || correct > 2) { // si está fuera de 0 y 2 sos un bldo
+        console.log("sos un boludo."); 
+        return;
+    }
+
+    jokers--; // restamos un comodin
+    let opt;
+
+    do opt = Math.floor(Math.random() * 2);
+    while (opt == correct) // elegis una opción que no sea la correcta
+
+    buttons[opt].style.display = "none"; // lo ocultas
+    joker.textContent = `COMODINES (${jokers})` // actualizas valor de comodines
 }
 
 let score = 0;
@@ -176,6 +205,7 @@ function startGame() {
     phDisplay.style.color = "#392D29";
     buttons.forEach((btn) => {
         btn.disabled = false;
+        btn.style.display = "block";
         btn.style.backgroundColor = "#6B292D"
     });
     scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
