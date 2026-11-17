@@ -162,7 +162,6 @@ function update(win) {
         scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
         buttons.forEach((btn) => {
             btn.disabled = true;
-            btn.style.display = "block";
         });
         setTimeout(() => {
             phDisplay.style.color = "#392D29";
@@ -170,6 +169,7 @@ function update(win) {
             loadStage(stage);
             buttons.forEach((btn) => {
                 btn.disabled = false;
+                btn.style.display = "block";
                 btn.style.backgroundColor = "#6B292D"
             });
         }, 600);
@@ -178,7 +178,7 @@ function update(win) {
 
 // CONSUMIR JOKER
 function consumeJoker(c) {
-    if (joker <= 0) return; // si no hay comodines, sos un bldo
+    if (jokers <= 0) return; // si no hay comodines, sos un bldo
     if (c < 0 || c > 2) { // si está fuera de 0 y 2 sos un bldo
         console.log("sos un boludo."); 
         return;
@@ -209,6 +209,7 @@ function startGame() {
     stage = choosePhrase(phrases);
     loadStage(stage);
     score = 0;
+    jokers = 3;
     phDisplay.style.color = "#392D29";
     buttons.forEach((btn) => {
         btn.disabled = false;
