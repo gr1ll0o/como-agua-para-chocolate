@@ -80,7 +80,7 @@ const phrases = {
     "Creo que tenemos pendiente una conversación, ¿no lo crees?": ["Rosaura", "Tita", "Gertrudis"],
     "No te quiero presionar, sólo quiero asegurarte que a mi lado serás feliz.": ["Doctor John Brown", "Pedro", "Alex Brown"],
     "¿Te acuerdas de cuando escuchamos por primera vez esa pieza?": ["Pedro", "Doctor John Brown", "Alex Brown"],
-    "Felicidades Pedro, tu hija no pudo haber encontrado mejor partido que Alex en diez millas a la redonda.": ["Jorge Lobo", "Doctor John Brown", "Pedro"],
+    "Felicidades Pedro, tu hija no pudo haber encontrado mejor partido que Alex en diez millas a la redonda.": ["Paquita Lobo", "Doctor John Brown", "Pedro"],
     "¿Y de qué me tiene que venir a hablar ese señor?": ["Mamá Elena", "Rosaura", "Tita"],
     "Yo soy hombre de pocas, pero muy firmes palabras. Le juro que tendrá mi amor por siempre. ¿Qué hay del suyo? ¿Usted también lo siente por mí?": ["Pedro", "Doctor John Brown", "Alex Brown"],
     "¡Abre los ojos y mira tu pollo!": ["Mamá Elena", "Nacha", "Chencha"],
@@ -191,8 +191,8 @@ function consumeJoker(i) {
     jokers--; // restamos un comodin
     let opt;
 
-    do opt = Math.floor(Math.random() * 2);
-    while (opt == correct) // elegis una opción que no sea la correcta
+    do opt = Math.floor(Math.random() * 3);
+    while (opt == i) // elegis una opción que no sea la correcta
 
     buttons[opt].style.display = "none"; // lo ocultas
     joker.textContent = `COMODINES (${jokers})` // actualizas valor de comodines
