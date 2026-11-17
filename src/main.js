@@ -186,7 +186,7 @@ function update(win) {
     joker.disabled = true;
 
     if (win) {
-        phDisplay.style.color = "#A4A56A";
+        phDisplay.style.color = "#477548";
 
         if (score > record) {
             record = score;
@@ -265,14 +265,14 @@ buttons.forEach((btn, i) => {
     btn.addEventListener("click", () => {
         if (i === correctIndex) {
             score++;
-            btn.style.background = "#A4A56A";
+            btn.style.background = "#477548";
             update(true);
         } else {
             btn.style.background = "#392D29";
             update(false);
         }
     });
-});
+}); 
 
 restart.addEventListener("click", () => startGame());
 
