@@ -146,32 +146,37 @@ const loadStage = (stage) => {
 };
 
 function update(win) {
-    results.innerHTML = ``;
-    if (!win) { // PERDIO
-        phDisplay.style.color = "#A83232";
-        buttons.forEach((btn) => {btn.disabled = true;});
-        if (score > localStorage.getItem('record')) {
-            results.innerHTML += `<p id="record">¡NUEVO RÉCORD!</p>`
-            localStorage.setItem('record', score);
-        }
-        results.innerHTML += `<p>${score} correcta(s).</p>`
-        setTimeout(() => endgame.classList.add("active"), 1000);
-    }else{ // GANO
-        phDisplay.style.color = "#477548";
-        if (score > record) record = score;
+    buttons.forEach((btn) => {
+        btn.disabled = true;
+    });
+    if (win) {
         scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
-        buttons.forEach((btn) => {
-            btn.disabled = true;
-        });
+        if (score > record) {
+            record = score;
+            localStorage.setItem("record", record);
+        }
+
         setTimeout(() => {
             phDisplay.style.color = "#392D29";
+
             stage = choosePhrase(phrases);
             loadStage(stage);
             buttons.forEach((btn) => {
                 btn.disabled = false;
                 btn.style.display = "block";
-                btn.style.backgroundColor = "#6B292D"
+                btn.style.visibility = "visible";
+                btn.style.backgroundColor = "#6B292D";
             });
+        }, 600);
+    } else {
+        phDisplay.style.color = "#A4A56A";
+        setTimeout(() => {
+            endgame.classList.add("active");
+
+            results.innerHTML = `
+                <p>RESPUESTAS CORRECTAS: ${score}</p>
+                <p>RÉCORD: ${record}</p>
+            `;
         }, 600);
     }
 }
@@ -179,16 +184,17 @@ function update(win) {
 // CONSUMIR JOKER
 function consumeJoker(correctIndex) {
     if (jokers <= 0) return;
-    if (correctIndex < 0 || correctIndex > 2) {
-        console.log("Índice incorrecto");
-        return;
-    }
+    let availableOptions = [];
+    buttons.forEach((btn, index) => {
+        if (index !== correctIndex && btn.style.visibility !== "hidden") {
+            availableOptions.push(index);
+        }
+    });
+    if (availableOptions.length === 0) return;
     jokers--;
-    let opt;
-    do {
-        opt = Math.floor(Math.random() * 3);
-    } while (opt === correctIndex || buttons[opt].style.display === "none");
-    buttons[opt].style.display = "none";
+    let randomIndex = Math.floor(Math.random() * availableOptions.length);
+    let opt = availableOptions[randomIndex];
+    buttons[opt].style.visibility = "hidden";
     joker.textContent = `COMODINES (${jokers})`;
 }
 
@@ -215,6 +221,7 @@ function startGame() {
         btn.disabled = false;
         btn.style.display = "block";
         btn.style.backgroundColor = "#6B292D";
+        btn.style.visibility = "visible";
     });
     scoreDisplay.innerHTML = "CORRECTAS: " + score + " | RÉCORD: " + record;
 }
